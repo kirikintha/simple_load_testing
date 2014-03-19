@@ -9,6 +9,10 @@ Bees With Machine Guns (Python 2.6, boto, paramiko)
 
 Apache Benchmarking Tool (Apache 2 Tools)
 
+##Installation
+
+You need to make sure these are installed, and if you are using BWMQG you need to have the proper credentials and pem key ready.
+
 ##Warning
 
 Bees With Machine Guns and Apache Bench are meant for testing development and staging environments. BWMG especially can be costly, if you don't know what you are doing.
