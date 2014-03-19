@@ -27,7 +27,7 @@ http://httpd.apache.org/docs/2.2/programs/ab.html
 
 http://www.petefreitag.com/item/689.cfm
 
-##Same Make Functions
+##Make Commands
 The following commands are available for use, however:
 
 USE WITH CAUTION!
