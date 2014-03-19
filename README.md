@@ -11,7 +11,7 @@ Apache Benchmarking Tool (Apache 2 Tools)
 
 ##Installation
 
-You need to make sure these are installed, and if you are using BWMQG you need to have the proper credentials and pem key ready.
+You need to make sure these are installed, and if you are using BWMG you need to have the proper credentials and pem key ready.
 
 ##Warning
 
