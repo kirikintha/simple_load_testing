@@ -63,16 +63,6 @@ out "\tbees up -s 6 -g %your-security-group -k %your-pem-key"
 out "\tbees attack -n 20000 -c 1000 -u %your-url"
 out "\tbees down"
 echo ""
-out "Usage: make peak-load-test"
-out "Description:"
-out "\tRuns a load test, using AB or Bees. Defaults To Apache."
-out "\tThis is good for testing peak load on a server."
-out "\tIf using apache, runs this command: ab -k -n 10000 -c 3000 %your-url."
-out "\tIf using bees, runs this set of commands:"
-out "\tbees up -s 4 -g %your-security-group -k %your-pem-key"
-out "\tbees attack -n 10000 -c 3000 -u %your-url"
-out "\tbees down"
-echo ""
 #Outro
 out "USE WITH CAUTION!" 'warning'
 out "NEVER RUN THIS ON A PRODUCTION SERVER!" 'warning'

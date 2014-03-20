@@ -29,6 +29,3 @@ high-load-test:
 
 heavy-load-test:
 	@sudo make-scripts/init.sh 20000 1000 6
-
-peak-load-test:
-	@sudo make-scripts/init.sh 10000 3000 4
