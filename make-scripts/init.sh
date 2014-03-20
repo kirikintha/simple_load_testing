@@ -80,53 +80,59 @@ if [ -z "$1" ]
         #If we get this far, ask which type of load test we are running.
         read -p "Which Test Do you want to run? [ab|bees] (default = ab): " TYPE
         TYPE=${TYPE:-ab}
-        out "'$TYPE' selected." 'info'
-        #URL
-        read -p "Which url do you want to test?: " URL
-        REGEX='(https?)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
-        if [[ $URL =~ $URL ]]
+        if [ "$TYPE" == "ab" ] || [ "$TYPE" == "bees" ]
             then
-                #Date
-                FULLDATE=`date`
-                NOW=`date +%m%d%Y%H%M%S`
-                #Ask where you want to put the output file
-                read -p "Where do you want to output this log? (default = /var/log/$4-$NOW.log): " OUTPUT
-                OUTPUT=${OUTPUT:-"/var/log/load-test-$NOW.log"}
-                if [[ "$OUTPUT" = /* ]]
+                out "'$TYPE' selected." 'info'
+                #URL
+                read -p "Which url do you want to test?: " URL
+                REGEX='(https?)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
+                if [[ $URL =~ $URL ]]
                     then
-                        #Switch by type, after we have assembled everything
-                        case "$TYPE" in
-                            ab)
-                                abTest $1 $2 $URL $OUTPUT
-                                ;;
-                            bees)
-                                #Ask for AWS Specific items.
-                                #@TODO
-                                #SECURITY GROUP
-                                read -p "Enter security group: " GROUP
-                                if [ -z "$1" ]
-                                  then
-                                    out "No security group supplied. Please enter a security group." 'error'
-                                    exit 0
-                                  else
-                                    read -p "Enter pem key name: " GROUP
-                                    if [ -z "$1" ]
-                                      then
-                                        out "No pem key supplied. Please enter a pem key." 'error'
-                                        exit 0
-                                      else
-                                        beesTest $GROUP $PEM $3 $1 $2 $URL $OUTPUT
-                                    fi
-                                fi
-                                ;;
-                        esac
+                        #Date
+                        FULLDATE=`date`
+                        NOW=`date +%m%d%Y%H%M%S`
+                        #Ask where you want to put the output file
+                        read -p "Where do you want to output this log? (default = /var/log/$4-$NOW.log): " OUTPUT
+                        OUTPUT=${OUTPUT:-"/var/log/load-test-$NOW.log"}
+                        if [[ "$OUTPUT" = /* ]]
+                            then
+                                #Switch by type, after we have assembled everything
+                                case "$TYPE" in
+                                    ab)
+                                        abTest $1 $2 $URL $OUTPUT
+                                        ;;
+                                    bees)
+                                        #Ask for AWS Specific items.
+                                        #@TODO
+                                        #SECURITY GROUP
+                                        read -p "Enter security group: " GROUP
+                                        if [ -z "$1" ]
+                                          then
+                                            out "No security group supplied. Please enter a security group." 'error'
+                                            exit 0
+                                          else
+                                            read -p "Enter pem key name: " GROUP
+                                            if [ -z "$1" ]
+                                              then
+                                                out "No pem key supplied. Please enter a pem key." 'error'
+                                                exit 0
+                                              else
+                                                beesTest $GROUP $PEM $3 $1 $2 $URL $OUTPUT
+                                            fi
+                                        fi
+                                        ;;
+                                esac
+                            else
+                                out "Could not continue, please use an absolute directory, or start with /." 'error'
+                                exit 0
+                        fi
                     else
-                        out "Could not continue, please use an absolute directory, or start with /." 'error'
+                        out "Invalid url supplied, please try again." 'error'
                         exit 0
                 fi
             else
-                out "Invalid url supplied, please try again." 'error'
-                exit 0
+            out "You must select ab or bees. Aborting" 'error'
+            exit 0
         fi
     fi
 fi
