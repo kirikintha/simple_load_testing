@@ -50,7 +50,7 @@ Description:
     
 	This is good for when you set something up, and want to do a quick test.
     
-	If using apache, runs this command: ab -n 100 -c 10 %your-url.
+	If using apache, runs this command: ab -k -n 100 -c 10 %your-url.
     
 	If using bees, runs this set of commands:
     
@@ -68,7 +68,7 @@ Description:
     
 	This is good for testing light load on a server.
     
-	If using apache, runs this command: ab -n 1000 -c 100 %your-url.
+	If using apache, runs this command: ab -k -n 1000 -c 100 %your-url.
     
 	If using bees, runs this set of commands:
     
@@ -85,7 +85,7 @@ Description:
     
 	This is good for testing average load on a server.
     
-	If using apache, runs this command: ab -n 10000 -c 250 %your-url.
+	If using apache, runs this command: ab -k -n 10000 -c 250 %your-url.
     
 	If using bees, runs this set of commands:
     
@@ -103,7 +103,7 @@ Description:
     
 	This is good for testing a little higher than average load on a server.
     
-	If using apache, runs this command: ab -n 10000 -c 500 %your-url.
+	If using apache, runs this command: ab -k -n 10000 -c 500 %your-url.
     
 	If using bees, runs this set of commands:
     
@@ -121,7 +121,7 @@ Description:
     
 	This is good for testing heavy load on a server.
     
-	If using apache, runs this command: ab -n 20000 -c 1000 %your-url.
+	If using apache, runs this command: ab -k -n 20000 -c 1000 %your-url.
     
 	If using bees, runs this set of commands:
     
@@ -139,7 +139,7 @@ Description:
     
 	This is good for testing peak load on a server.
     
-	If using apache, runs this command: ab -n 10000 -c 3000 %your-url.
+	If using apache, runs this command: ab -k -n 10000 -c 3000 %your-url.
     
 	If using bees, runs this set of commands:
     
