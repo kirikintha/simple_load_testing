@@ -90,7 +90,7 @@ if [ -z "$1" ]
                 FULLDATE=`date`
                 NOW=`date +%m%d%Y%H%M%S`
                 #Ask where you want to put the output file
-                read -p "Where do you want to output this log? (default = /var/log/load-test-$NOW.log): " OUTPUT
+                read -p "Where do you want to output this log? (default = /var/log/$4-$NOW.log): " OUTPUT
                 OUTPUT=${OUTPUT:-"/var/log/load-test-$NOW.log"}
                 if [[ "$OUTPUT" = /* ]]
                     then
