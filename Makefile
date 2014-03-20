@@ -11,3 +11,24 @@ SHELL := /bin/bash
 #------------------------------------------------------------------------------
 help:
 	@bash make-scripts/help.sh
+
+#------------------------------------------------------------------------------
+# Commands
+#------------------------------------------------------------------------------
+simple-load-test:
+	@sudo make-scripts/init.sh 100 10 1
+
+load-test:
+	@sudo make-scripts/init.sh 1000 100 2
+
+medium-load-test:
+	@sudo make-scripts/init.sh 10000 250 4
+
+high-load-test:
+	@sudo make-scripts/init.sh 10000 500 4
+
+heavy-load-test:
+	@sudo make-scripts/init.sh 20000 1000 6
+
+peak-load-test:
+	@sudo make-scripts/init.sh 10000 3000 4
