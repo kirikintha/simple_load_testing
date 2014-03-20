@@ -131,24 +131,6 @@ Description:
     
 	bees down
 
-Usage: make peak-load-test
-
-Description:
-
-	Runs a load test, using AB or Bees. Defaults To Apache.
-    
-	This is good for testing peak load on a server.
-    
-	If using apache, runs this command: ab -k -n 10000 -c 3000 %your-url.
-    
-	If using bees, runs this set of commands:
-    
-	bees up -s 4 -g %your-security-group -k %your-pem-key
-    
-	bees attack -n 10000 -c 3000 -u %your-url
-    
-	bees down
-
 USE WITH CAUTION!
 
 NEVER RUN THIS ON A PRODUCTION SERVER!
