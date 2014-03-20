@@ -18,7 +18,7 @@ abTest() {
         then
             out "Starting Apache Bench Load Test" 'info'
             #Run Test.
-            ab -n $1 -c $2 $3 > $4
+            ab -k -n $1 -c $2 $3 > $4
             if [ $? -eq 0 ]
               then
                 out "Load Test Finished." 'success'
@@ -37,13 +37,31 @@ beesTest() {
         out "No servers supplied. Please enter the amount of servers" 'error'
         else
         #Confirm everything is ok.
-        read -p "$MESSAGE" CONFIRM
+        a="Everything look ok?\n"
+        b="Security Group: $1\n"
+        c="Pem Key Name: $2\n"
+        d="Servers: $3\n"
+        e="Requests: $4\n"
+        f="Concurrency: $5\n"
+        g="URL: $6\n"
+        h="Log: $7\n"
+        read -p "$(echo -e $a$b$c$d$e$f$g$h[y/n]:)" CONFIRM
+        CONFIRM=${CONFIRM:n}
         if [[ "$CONFIRM" = "y" ]]
             then
+                out "Starting Bees With Machine Guns Load Test" 'info'
                 #Run Test.
-                out "Starting Bees With Machine Guns Test" 'info'
+                bees up -s $3 -g $1 -k $2
+                bees attack -n $4 -c $5 -u $6 > $7
+                bees down
+                if [ $? -eq 0 ]
+                  then
+                    out "Load Test Finished." 'success'
+                  else
+                    out "Load Test Failed." 'error'
+                fi
             else
-            out "Aborting" 'info'
+            out "Aborting" 'warning'
         fi
     fi
 }
@@ -83,7 +101,23 @@ if [ -z "$1" ]
                                 ;;
                             bees)
                                 #Ask for AWS Specific items.
-                                beesTest $1 $2 $3 $URL $OUTPUT
+                                #@TODO
+                                #SECURITY GROUP
+                                read -p "Enter security group: " GROUP
+                                if [ -z "$1" ]
+                                  then
+                                    out "No security group supplied. Please enter a security group." 'error'
+                                    exit 0
+                                  else
+                                    read -p "Enter pem key name: " GROUP
+                                    if [ -z "$1" ]
+                                      then
+                                        out "No pem key supplied. Please enter a pem key." 'error'
+                                        exit 0
+                                      else
+                                        beesTest $GROUP $PEM $3 $1 $2 $URL $OUTPUT
+                                    fi
+                                fi
                                 ;;
                         esac
                     else
